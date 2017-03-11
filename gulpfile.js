@@ -66,7 +66,7 @@ gulp.task('sass', function () {
         .pipe(gutil.env.type === 'production' ? cleanCss() : gutil.noop())
         .pipe(gutil.env.type === 'production' ? gutil.noop() : sourcemaps.write())
         .pipe(rename({
-            basename: "styles.min"
+            basename: "style.min"
         }))
         .pipe(gulp.dest('./ressources/css'))
         .pipe(livereload());
