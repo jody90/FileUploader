@@ -9,6 +9,7 @@ var rename     = require('gulp-rename');
 var livereload = require('gulp-livereload');
 var gutil      = require('gulp-util');
 var dirSync    = require('gulp-directory-sync');
+var server     = require('gulp-server-livereload');
 
 var scripts = [
     './js/scripts.js'
@@ -28,8 +29,17 @@ function handleError(err) {
     this.emit('end');
 }
 
+gulp.task('webserver', function() {
+    gulp.src('')
+    .pipe(server({
+        livereload: true,
+        directoryListing: false,
+        open: false,
+        port:3000
+    }));
+});
+
 gulp.task('watch', function() {
-    livereload.listen();
     gulp.watch([sassFiles, jsFiles, angularFiles, imageFiles], ['sass', 'js', 'angular', 'images']);
 })
 
@@ -73,4 +83,4 @@ gulp.task('sass', function () {
 });
 
 // Default Task
-gulp.task('default', ['sass', 'js', 'angular', 'images', 'watch']);
+gulp.task('default', ['sass', 'js', 'angular', 'images', 'webserver', 'watch']);
