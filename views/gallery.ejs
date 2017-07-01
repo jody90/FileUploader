@@ -1,0 +1,14 @@
+<h1>Gallery</h1>
+
+<div class="row">
+<% for (var i = 0; i < files.length; i++) {%>
+
+    <!-- <%= files[i] %> -->
+
+        <div class="col-lg-2">
+
+            <img src="/thumbs/<%= files[i] %>" class="img-responsive">
+        </div>
+
+<% } %>
+</div>

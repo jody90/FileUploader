@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="HochzeitWebApp">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Hochzeit Barbara Matthias</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="ressources/images/favicon.png" type="image/png" />
+    <link rel="icon" href="ressources/images/favicon.png" type="image/png" />
+
+    <!-- CSS Styles -->
+    <!-- Librarys -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="css/style.min.css">
+
+    <!-- JS Scripts -->
+    <!-- Librarys -->
+    <script type="text/javascript" src="scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/angular.min.js"></script>
+    <script type="text/javascript" src="scripts/mobile-detect.min.js"></script>
+    <script type="text/javascript" src="scripts/angular-route.min.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/socket.io.min.js"></script>
+
+    <!-- Custom -->
+    <script type="text/javascript" src="angular/angular.min.js"></script>
+
+</head>
+<body ng-app="MyApp">
+    <div class="overlay hide">
+        <img class="loading" src="/images/loading.gif">
+    </div>
+
+    <div class="container-fluid">
+
+        <div ng-view></div>
+
+    </div>
+
+    <script type="text/javascript" src="scripts/scripts.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.blueimp-gallery.min.js"></script>
+    <script type="text/javascript" src="scripts/blueimp-gallery-video.js"></script>
+
+</body>
+</html>

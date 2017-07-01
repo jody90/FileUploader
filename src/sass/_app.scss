@@ -1,0 +1,153 @@
+body {
+    background: #fff;
+    background-color: #9c8c5e;
+    background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
+    color: #fff;
+}
+
+input {
+    color: #000;
+}
+
+#thumbnails {
+    border: 2px solid #fff;
+    min-height: 200px;
+    padding: 25px;
+    background: rgba(255,255,255,.6);
+
+    & div {
+        display: inline-block;
+        margin: 15px;
+    }
+}
+
+.thumbnail {
+    width: 200px;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,.5);
+    position: absolute;
+    z-index: 99999;
+
+    & .loading {
+        display: block;
+        margin: auto;
+        width: 200px;
+        top: 40%;
+        position: relative;
+    }
+}
+
+.userFile {
+    display: none !important;
+}
+
+.file-upload-label {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    border: 4px solid rgba(160,1,139,.6);;
+    background-color: rgba(255,255,255, 0.35);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    & span {
+        color: rgba(160,1,139,.6);;
+        font-size: 76px;
+        line-height: 200px;
+    }
+}
+
+.thumbnail-img {
+
+    &.video-poster {
+        background-image: url("/images/video-poster.jpg");
+    }
+
+    margin-top: 30px;
+    display: block;
+    padding: 40%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.blueimp-gallery-controls {
+    display: block;
+}
+
+.blueimp-gallery > .close, .blueimp-gallery > .title,
+.blueimp-gallery > .prev, .blueimp-gallery > .next,
+.blueimp-gallery > .prev, .blueimp-gallery > .next {
+    display: block;
+}
+
+#links {
+    margin-bottom: 30px;
+}
+
+.menu-item {
+    background: rgba(160,1,139,.4);
+    border: 1px solid rgb(133, 3, 144);
+    display: inline-block;
+    border-radius: 15px;
+    font-size: 24px;
+    height: 140px;
+    width: 140px;
+    line-height: 140px;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all .3s ease;
+    box-sizing: border-box;
+}
+
+.menu-item:hover {
+    height: 150px;
+    width: 150px;
+    line-height: 150px;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    border-radius: 5px;
+    text-decoration: none;
+    box-shadow: 0px 0px 8px rgba(134, 1, 105, 1);
+    // box-shadow: 0px 0px 8px rgba(148, 90, 4, 1);
+}
+
+@media(max-width: $screen-xs-max) {
+    .menu-item {
+        height: 90px;
+        width: 90px;
+        line-height: 90px;
+    }
+
+    .menu-item:hover {
+        height: 90px;
+        width: 90px;
+        line-height: 90px;
+    }
+}
+
+.header {
+    padding: 7px 0 8px 15px;
+    margin: -15px -15px 15px -15px;
+
+    background: -moz-linear-gradient(left, rgba(160,1,139,0.39) 0%, rgba(160,1,139,0.39) 44%, rgba(160,1,139,0.22) 100%);
+    background: -webkit-linear-gradient(left, rgba(160,1,139,0.39) 0%,rgba(160,1,139,0.39) 44%,rgba(160,1,139,0.22) 100%);
+    background: linear-gradient(to right, rgba(160,1,139,0.39) 0%,rgba(160,1,139,0.39) 44%,rgba(160,1,139,0.22) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#63a0018b', endColorstr='#38a0018b',GradientType=1 );
+    // background: -moz-linear-gradient(left, rgba(117,34,1,0.39) 0%, rgba(117,34,1,0.39) 44%, rgba(117,34,1,0.22) 100%);
+    // background: -webkit-linear-gradient(left, rgba(117,34,1,0.39) 0%,rgba(117,34,1,0.39) 44%,rgba(117,34,1,0.22) 100%);
+    // background: linear-gradient(to right, rgba(117,34,1,0.39) 0%,rgba(117,34,1,0.39) 44%,rgba(117,34,1,0.22) 100%);
+    // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#63752201', endColorstr='#38752201',GradientType=1 );
+
+    h1 {
+        font-size: 24px;
+    }
+}

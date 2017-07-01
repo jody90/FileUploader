@@ -16,12 +16,13 @@ var scripts = [
 ];
 
 var angularScripts = [
-    './src/angular/app.js'
+    './src/angular/app.js',
+    './src/angular/controller/*.js'
 ];
 
 var sassFiles = './src/sass/*.scss';
 var jsFiles = './src/js/*.js';
-var angularFiles = './src/angular/*.js';
+var angularFiles = './src/angular/**/*.js';
 var imageFiles = './src/images';
 
 function handleError(err) {
@@ -55,7 +56,7 @@ gulp.task('js', function() {
     .pipe(sourcemaps.init())
     .pipe(concat('scripts.min.js'))
     .pipe(sourcemaps.write())
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest('./ressources/js'))
     .pipe(livereload());
 });
@@ -64,7 +65,7 @@ gulp.task('angular', function() {
     return gulp.src(angularScripts)
         .pipe(sourcemaps.init())
         .pipe(concat('angular.min.js'))
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(gulp.dest('./ressources/angular'))
         .pipe(livereload());
 });
@@ -83,4 +84,4 @@ gulp.task('sass', function () {
 });
 
 // Default Task
-gulp.task('default', ['sass', 'js', 'angular', 'images', 'webserver', 'watch']);
+gulp.task('default', ['sass', 'js', 'angular', 'images', 'watch']);
