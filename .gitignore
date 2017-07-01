@@ -1,1 +1,8 @@
 node_modules/
+uploads/*jpg
+uploads/*jpeg
+uploads/*png
+uploads/*mp4
+uploads/*mov
+uploads/*wmv
+uploads/*raw
