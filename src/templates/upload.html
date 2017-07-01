@@ -1,19 +1,27 @@
+<div class="header">
+    <h1>Bilder und Video Hochladen</h1>
+</div>
+
+<a  href="#!/" class="back-main-menu">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    Zurück zum Hauptmenü
+</a>
+
 <div ng-if="!isAndroid">
 
-    <h1 class="text-center">Bilderupload Hochzeit von Bibsi und Mätthy</h1>
     <div class="row">
         <div class="col-xs-12 col-md-6">
 
             <form id="uploadForm" enctype="multipart/form-data" method="post">
                 <div class="form-group">
                     <label for="uploaderName">Von wem kommt das Bild (optional)</label>
-                    <input id="uploaderName" type="text" name="uploaderName" placeholder="Dein Name" />
+                    <input class="form-control" id="uploaderName" type="text" name="uploaderName" placeholder="Dein Name" />
                 </div>
                 <div class="form-group">
                     <label for="userFile">Dateien auswählen</label>
                     <input id="userFile" type="file" name="userFile" multiple="multiple" onchange="angular.element(this).scope().showUploadPreview();"/>
                 </div>
-                <button ng-click="uploadForm();" class="btn btn-success" name="submit" id="submitUpload">
+                <button ng-click="uploadForm();" class="btn btn-success margin-top-lg margin-bottom-lg" name="submit" id="submitUpload">
                     Bilder hochladen
                 </button>
 
@@ -31,14 +39,17 @@
 </div>
 
 <div ng-if="isAndroid">
-    <h1 class="text-center">Upload Android</h1>
     <div class="row">
         <div class="col-xs-12">
 
             <form id="uploadForm" enctype="multipart/form-data" method="post">
                 <div class="form-group">
                     <label for="uploaderName">Von wem kommt das Bild (optional)</label>
-                    <input id="uploaderName" type="text" name="uploaderName" placeholder="Dein Name" />
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4">
+                            <input class="form-control" id="uploaderName" type="text" name="uploaderName" placeholder="Dein Name" />
+                        </div>
+                    </div>
                 </div>
                 <div id="addInputArea" class="row">
                     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
@@ -48,7 +59,7 @@
                         <input class="userFile" id="userFile_0" type="file" name="userFile[]" />
                     </div>
                 </div>
-                <button ng-click="uploadForm();" class="btn btn-success" name="submit" id="submitUpload">
+                <button ng-click="uploadForm();" class="btn btn-success margin-top-lg margin-bottom-lg" name="submit" id="submitUpload">
                     Bilder hochladen
                 </button>
 

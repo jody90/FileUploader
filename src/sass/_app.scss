@@ -92,15 +92,18 @@ input {
     margin-bottom: 30px;
 }
 
+.menu-cell {
+    margin-top: 15px;
+}
+
 .menu-item {
     background: rgba(160,1,139,.4);
     border: 1px solid rgb(133, 3, 144);
     display: inline-block;
-    border-radius: 15px;
+    border-radius: 0px;
     font-size: 24px;
-    height: 140px;
-    width: 140px;
-    line-height: 140px;
+    display: block;
+    padding: 5px;
     color: #ffffff;
     cursor: pointer;
     text-decoration: none;
@@ -109,9 +112,9 @@ input {
 }
 
 .menu-item:hover {
-    height: 150px;
-    width: 150px;
-    line-height: 150px;
+    // height: 150px;
+    // width: 150px;
+    // line-height: 150px;
     border: 1px solid #ffffff;
     color: #ffffff;
     border-radius: 5px;
@@ -120,23 +123,24 @@ input {
     // box-shadow: 0px 0px 8px rgba(148, 90, 4, 1);
 }
 
-@media(max-width: $screen-xs-max) {
-    .menu-item {
-        height: 90px;
-        width: 90px;
-        line-height: 90px;
-    }
-
-    .menu-item:hover {
-        height: 90px;
-        width: 90px;
-        line-height: 90px;
-    }
-}
+// @media(max-width: $screen-xs-max) {
+//     .menu-item {
+//         height: 90px;
+//         width: 90px;
+//         line-height: 90px;
+//     }
+//
+//     .menu-item:hover {
+//         height: 90px;
+//         width: 90px;
+//         line-height: 90px;
+//     }
+// }
 
 .header {
     padding: 7px 0 8px 15px;
-    margin: -15px -15px 15px -15px;
+    margin: -15px -15px 25px -15px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,.5);
 
     background: -moz-linear-gradient(left, rgba(160,1,139,0.39) 0%, rgba(160,1,139,0.39) 44%, rgba(160,1,139,0.22) 100%);
     background: -webkit-linear-gradient(left, rgba(160,1,139,0.39) 0%,rgba(160,1,139,0.39) 44%,rgba(160,1,139,0.22) 100%);
@@ -149,5 +153,42 @@ input {
 
     h1 {
         font-size: 24px;
+        display: inline-block;
     }
+}
+
+.back-main-menu {
+    padding: 7px 0 8px 15px;
+    margin: -25px -15px 25px -15px;
+    background: rgba(160,1,139,0.19);
+    display: block;
+    text-decoration: none;
+    color: #fff;
+
+    &:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    //
+    // & span {
+    //     padding: 7px;
+    //     background: #a0018b;
+    //     padding-left: 15px;
+    //     margin-left: 15px;
+    //     padding-right: 15px;
+    //
+    // }
+    //
+    // &:after {
+    //     content: "";
+    //     width: 0;
+    //     height: 0;
+    //     top: 8px;
+    //     left: 5px;
+    //     border-style: solid;
+    //     border-width: 20px 30px 20px 0;
+    //     position: absolute;
+    //     border-color: transparent rgb(160,1,139) transparent transparent;
+    // }
 }
