@@ -5,7 +5,6 @@ var path = require('path')
 var moment = require('moment');
 var cDrive = require('./cDrive');
 var fs = require('fs');
-var Jimp = require("jimp");
 var q = require("q");
 var bodyParser = require("body-parser");
 var uuidv1 = require('uuid/v1');
