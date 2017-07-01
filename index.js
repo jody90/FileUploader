@@ -11,7 +11,6 @@ var uuidv1 = require('uuid/v1');
 var ioProm  = require('express-socket.io');
 var server  = ioProm.init(app);
 var useragent = require('useragent');
-var MobileDetect = require('mobile-detect');
 var sharp = require('sharp');
 var mime = require('mime-types');
 
