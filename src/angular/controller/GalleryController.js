@@ -6,18 +6,18 @@ myApp.controller('GalleryController', ['$scope', '$http', '$rootScope', '$routeP
 
         $rootScope.uploadPercentage = $rootScope.uploadPercentage || 1;
 
-        var countPercentage = setInterval(function() {
-            $rootScope.$apply(function() {
-                var percentageAdd = $rootScope.uploadPercentage > 40 ? 1 : 3;
-                $rootScope.uploadPercentage = parseInt($rootScope.uploadPercentage) + percentageAdd;
-
-                if ($rootScope.uploadPercentage >= 99) {
-                    $rootScope.uploadPercentage = 100;
-                    clearInterval(countPercentage);
-                }
-
-            });
-        }, 2500);
+        // var countPercentage = setInterval(function() {
+        //     $rootScope.$apply(function() {
+        //         var percentageAdd = $rootScope.uploadPercentage > 40 ? 1 : 3;
+        //         $rootScope.uploadPercentage = parseInt($rootScope.uploadPercentage) + percentageAdd;
+        //
+        //         if ($rootScope.uploadPercentage >= 99) {
+        //             $rootScope.uploadPercentage = 100;
+        //             clearInterval(countPercentage);
+        //         }
+        //
+        //     });
+        // }, 2500);
     }
 
     var posting = $http({
