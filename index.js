@@ -42,22 +42,28 @@ app.get('/', function(req, res) {
 app.get('/gallery', function(req, res) {
     var files = [];
     fs.readdir(uploadThumbsFolder, (err, tFiles) => {
-        for (var i = 0; i < tFiles.length; i++) {
-            if (tFiles[i] !== "temp" && tFiles[i] !== ".directory") {
-                var thumbnail = "thumbs/" + tFiles[i];
-                var large = "uploads/" + tFiles[i];
-                var mimetype = mime.contentType(tFiles[i]);
+        if (tFiles.length > 0) {
+            for (var i = 0; i < tFiles.length; i++) {
+                if (tFiles[i] !== "temp" && tFiles[i] !== ".directory") {
+                    var thumbnail = "thumbs/" + tFiles[i];
+                    var large = "uploads/" + tFiles[i];
+                    var mimetype = mime.contentType(tFiles[i]);
 
-                var tImageData = {
-                    thumbnail: thumbnail,
-                    large: large,
-                    mimetype: mimetype
+                    var tImageData = {
+                        thumbnail: thumbnail,
+                        large: large,
+                        mimetype: mimetype
+                    }
+                    files.push(tImageData);
                 }
-                files.push(tImageData);
             }
+            files.reverse();
+            res.end(JSON.stringify(files))
         }
-        files.reverse();
-        res.end(JSON.stringify(files))
+        else {
+            // res.end(JSON.stringify({status: 500, message: "Thumbs Folder is empty"}));
+            res.end(JSON.stringify(files))
+        }
     })
 })
 
