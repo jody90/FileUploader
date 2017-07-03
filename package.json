@@ -10,7 +10,6 @@
     "bootstrap": "^3.3.7",
     "ejs": "^2.5.6",
     "express": "^4.15.3",
-    "express-socket.io": "^1.0.3",
     "google-auth-library": "^0.10.0",
     "googleapis": "^19.0.0",
     "gulp": "^3.9.1",
@@ -31,7 +30,6 @@
     "q": "^1.5.0",
     "sharp": "^0.18.1",
     "useragent": "^2.1.13",
-    "uuid": "^3.1.0"
   },
   "devDependencies": {},
   "author": "Jody",

@@ -32,6 +32,5 @@ myApp.controller('GalleryController', ['$scope', '$http', '$rootScope', '$routeP
         if (tImages.length > $rootScope.images) {
             $rootScope.images.push.apply($rootScope.images, tImages);
         }
-        // console.log("$rootScope.images: ", $rootScope.images);
     });
 }])

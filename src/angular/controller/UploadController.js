@@ -39,49 +39,84 @@ myApp.controller('UploadController', ['$scope', '$rootScope', '$http', '$locatio
         // }
     }
 
+    function uploadFile(data, counter, filesTotal, callback) {
+
+        var files = data.files;
+
+        var formData = new FormData();
+        formData.append("uploaderName", data.uploaderName);
+
+        formData.append("userFile", files[0]);
+
+        console.log("counter: ", counter);
+
+        var posting = $http({
+            method: 'POST',
+            url: '/uploaded',
+            data: formData,
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined},
+            processData: false
+        })
+        posting.then(function (response) {
+
+            var uploadedFile = response.data.file;
+
+            if ($rootScope.images == undefined) {
+                $rootScope.images = [];
+            }
+
+            $rootScope.images.unshift(uploadedFile);
+
+            counter++;
+            files.splice(0, 1);
+            data.files = files;
+
+            if (files.length > 0) {
+                setTimeout(function() {
+
+                    var filesProcessed = counter;
+                    var uploadPercentage = Math.round((100 / filesTotal) * filesProcessed);
+
+                    $rootScope.uploadPercentage = uploadPercentage;
+                    uploadFile(data, counter, filesTotal, callback);
+                }, 2000);
+            }
+            else {
+                $rootScope.uploadPercentage = 100;
+                callback();
+            }
+        });
+    }
+
     $scope.uploadForm = function() {
 
         $rootScope.uploading = true;
 
         var uploaderName = $("#uploaderName").val();
-        var data = new FormData();
 
-        data.append("uploaderName", uploaderName);
+        var uploadData = {
+            uploaderName: uploaderName,
+            files: []
+        };
+
 
         if (!$scope.isAndroid) {
             $.each($('#userFile')[0].files, function(i, file) {
-                console.log(file);
-                data.append('userFile', file);
+                uploadData.files.push(file);
             });
         }
         else {
             var inputElementsCount = $("#uploadForm").find(".userFile").length;
-            $.each($("#uploadForm").find(".userFile"), function(i, element) {
-                var file = $(element)[0].files;
-                if (i + 1 < inputElementsCount) {
-                    data.append('userFile', file[0]);
-                }
+            uploadData.files = $('#userFile')[0].files;
+        }
+
+        if (uploadData.files.length == $('#userFile')[0].files.length && uploadData.files.length > 0) {
+            uploadFile(uploadData, 0, uploadData.files.length, function() {
+                console.log("alle oben");
             })
         }
 
-        var uuid = localStorage.getItem("uuid");
-
-        if (uuid != null) {
-            data.append("uuid", uuid);
-        }
-
-        var posting = $http({
-            method: 'POST',
-            url: '/uploaded',
-            data: data,
-            transformRequest: angular.identity,
-            headers: { 'Content-Type': undefined},
-            processData: false
-        })
-
-        posting.then(function (response) {
-            // console.log(response);
-        });
         $location.path( "/gallery/uploading" );
     }
 
