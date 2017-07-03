@@ -2,6 +2,8 @@ myApp.controller('GalleryController', ['$scope', '$http', '$rootScope', '$routeP
 
     if ($routeParams.isUploading !== undefined && $rootScope.uploading) {
 
+        $rootScope.showProgressBar = true
+
         $rootScope.uploadPercentage = $rootScope.uploadPercentage || 1;
 
         var countPercentage = setInterval(function() {

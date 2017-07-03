@@ -61,6 +61,8 @@ $(document).ready(function() {
 
             picReader.addEventListener("load", function(event) {
                 var picFile = event.target.result;
+                var picFile = file.type == "video/mp4" ? "/images/video-poster.jpg" : event.target.result;
+
                 $(thisLabel).find("span").remove();
                 $(thisLabel).css("background-image", "url("+picFile+")");
             });

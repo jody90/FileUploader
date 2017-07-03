@@ -100,7 +100,6 @@ myApp.controller('UploadController', ['$scope', '$rootScope', '$http', '$locatio
             files: []
         };
 
-
         if (!$scope.isAndroid) {
             $.each($('#userFile')[0].files, function(i, file) {
                 uploadData.files.push(file);
@@ -108,10 +107,21 @@ myApp.controller('UploadController', ['$scope', '$rootScope', '$http', '$locatio
         }
         else {
             var inputElementsCount = $("#uploadForm").find(".userFile").length;
-            uploadData.files = $('#userFile')[0].files;
+            $.each($("#uploadForm").find(".userFile"), function(i, element) {
+                var file = $(element)[0].files[0];
+                if (i + 1 < inputElementsCount) {
+                    uploadData.files.push(file);
+                    console.log(uploadData);
+                }
+            })
         }
 
-        if (uploadData.files.length == $('#userFile')[0].files.length && uploadData.files.length > 0) {
+        // eins von beiden ist immer gefuellt
+        // inputElementsCount immer eins abziehen weil wir ein element mehr im dom haben
+        var filesCount = inputElementsCount === undefined ? $('#userFile')[0].files.length : inputElementsCount - 1;
+        console.log("filesCount: ", filesCount);
+
+        if (uploadData.files.length == filesCount  && uploadData.files.length > 0) {
             uploadFile(uploadData, 0, uploadData.files.length, function() {
                 console.log("alle oben");
             })
