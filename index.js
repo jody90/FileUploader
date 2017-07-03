@@ -42,7 +42,7 @@ app.get('/', function(req, res) {
 app.get('/gallery', function(req, res) {
     var files = [];
     fs.readdir(uploadThumbsFolder, (err, tFiles) => {
-        if (tFiles.length > 0) {
+        if (tFiles.length !== undefined) {
             for (var i = 0; i < tFiles.length; i++) {
                 if (tFiles[i] !== "temp" && tFiles[i] !== ".directory") {
                     var thumbnail = "thumbs/" + tFiles[i];
