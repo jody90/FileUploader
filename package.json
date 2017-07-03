@@ -29,7 +29,7 @@
     "multer": "^1.3.0",
     "q": "^1.5.0",
     "sharp": "^0.18.1",
-    "useragent": "^2.1.13",
+    "useragent": "^2.1.13"
   },
   "devDependencies": {},
   "author": "Jody",
