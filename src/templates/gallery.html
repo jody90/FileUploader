@@ -29,7 +29,7 @@
             </div>
         </a>
 
-        <a class="download" ng-href="{{getDownloadLink(image.large)}}" target="_self">
+        <a class="download" ng-href="{{getDownloadLink(image.large)}}" target="_self" ng-if="image.mimetype == 'video/mp4'">
             <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
             Herunterladen
         </a>
@@ -45,11 +45,11 @@
             <div class="thumbnail-img" style="background-image: url('{{image.thumbnail}}');"></div>
         </a>
 
-        <a class="download" ng-href="{{getDownloadLink(image.large)}}" target="_self">
+        <a class="download" ng-href="{{getDownloadLink(image.large)}}" target="_self" ng-if="image.mimetype != 'video/mp4'">
             <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
             Herunterladen
         </a>
-        
+
     </div>
 </div>
 
