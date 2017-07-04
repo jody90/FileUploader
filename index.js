@@ -34,9 +34,7 @@ app.use(bodyParser.urlencoded({extended: true})); // configure the app to use bo
 
 // Routing
 app.get('/', function(req, res) {
-    res.render('layout', {
-        view: "index"
-    })
+    res.render(__dirname + '/views/layout')
 })
 
 app.get('/gallery', function(req, res) {
@@ -139,7 +137,7 @@ app.post('/uploaded', upload.single('userFile'), function(req, res) {
     // cDrive.doUpload(uploadedFilePaths);
 })
 
-var port = process.env.port || 4400
+var port = 4400;
 app.listen(port, function() {
     console.log('Node.js listening on port ' + port)
 })
