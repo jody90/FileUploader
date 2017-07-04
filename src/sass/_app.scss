@@ -197,26 +197,27 @@ input {
         text-decoration: none;
         color: #fff;
     }
+}
 
-    //
-    // & span {
-    //     padding: 7px;
-    //     background: #a0018b;
-    //     padding-left: 15px;
-    //     margin-left: 15px;
-    //     padding-right: 15px;
-    //
-    // }
-    //
-    // &:after {
-    //     content: "";
-    //     width: 0;
-    //     height: 0;
-    //     top: 8px;
-    //     left: 5px;
-    //     border-style: solid;
-    //     border-width: 20px 30px 20px 0;
-    //     position: absolute;
-    //     border-color: transparent rgb(160,1,139) transparent transparent;
-    // }
+.lightbox-image {
+    a {
+        color: #ffffff;
+        text-decoration: none;
+    }
+}
+
+.download {
+    text-align: center;
+    background: rgba(160,1,139,0.39);
+    box-sizing: border-box;
+    display: block;
+
+    & span {
+        vertical-align: middle;
+        padding: 8px 0;
+        box-sizing: border-box;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 16px;
+    }
 }

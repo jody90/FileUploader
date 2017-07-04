@@ -37,6 +37,13 @@ app.get('/', function(req, res) {
     res.render(__dirname + '/views/layout')
 })
 
+app.get('/download/:file(*)', function(req, res, next){
+  var file = req.params.file;
+  var path = uploadFolder + "/" + file;
+
+  res.download(path);
+});
+
 app.get('/gallery', function(req, res) {
     var files = [];
     fs.readdir(uploadThumbsFolder, (err, tFiles) => {

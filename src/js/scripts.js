@@ -22,7 +22,11 @@ $(document).ready(function() {
 
 
 
-
+    // $(".download").on("click", function() {
+    //     event.preventDefault();
+    //     var tFile = $(this).attr("data-filename");
+    //     console.log(tFile);
+    // })
 
     function print_ob(data) {
         var html = '<pre style="border: 1px solid red; padding: 10px;">' + JSON.stringify(data) + '</pre>'

@@ -24,7 +24,16 @@
             data-index={{$index}}
         >
             <div class="thumbnail-img video-poster"></div>
+            <div class="download" data-filename="{{image.large}}">
+                <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+            </div>
         </a>
+
+        <a class="download" ng-href="{{getDownloadLink(image.large)}}" target="_self">
+            <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+            Herunterladen
+        </a>
+
         <a  ng-if="image.mimetype != 'video/mp4'"
             ng-href="{{image.large}}"
             title="Hochzeit"
@@ -35,6 +44,12 @@
         >
             <div class="thumbnail-img" style="background-image: url('{{image.thumbnail}}');"></div>
         </a>
+
+        <a class="download" ng-href="{{getDownloadLink(image.large)}}" target="_self">
+            <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+            Herunterladen
+        </a>
+        
     </div>
 </div>
 

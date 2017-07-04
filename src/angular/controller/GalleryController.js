@@ -20,6 +20,30 @@ myApp.controller('GalleryController', ['$scope', '$http', '$rootScope', '$routeP
         // }, 2500);
     }
 
+    $scope.getDownloadLink = function(tFile) {
+        event.preventDefault()
+        var tFileArray =  tFile.split("/");
+        var filename = tFileArray[tFileArray.length - 1];
+        var url = '/download/' + filename;
+        return url;
+        // var posting = $http({
+        //     method: 'GET',
+        //     url: '/download/' + filename
+        // })
+        // console.log("tFile: ", filename);
+    }
+
+    $scope.downloadFile = function(tFile) {
+        event.preventDefault()
+        var tFileArray =  tFile.split("/");
+        var filename = tFileArray[tFileArray.length - 1];
+        var posting = $http({
+            method: 'GET',
+            url: '/download/' + filename
+        })
+        console.log("tFile: ", filename);
+    }
+
     var posting = $http({
         method: 'GET',
         url: '/gallery'
