@@ -139,7 +139,7 @@ app.post('/uploaded', upload.single('userFile'), function(req, res) {
     // cDrive.doUpload(uploadedFilePaths);
 })
 
-var port = 4400
+var port = process.env.port || 4400
 app.listen(port, function() {
     console.log('Node.js listening on port ' + port)
 })
