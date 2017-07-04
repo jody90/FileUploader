@@ -11,18 +11,48 @@ input {
 
 #thumbnails {
     border: 2px solid #fff;
-    min-height: 200px;
+    // min-height: 200px;
     padding: 25px;
     background: rgba(255,255,255,.6);
+    color: #000;
+    // font-weight: bold;
+
+    & .img-container {
+        display: inline-block;
+        vertical-align: middle;
+        height: 100px;
+        width: 100px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border: 2px solid #fff;
+
+    }
+
+    .filename,
+    .filesize {
+        padding: 0 35px;
+        display: inline-block;
+    }
+
+    .icon-remove-preview-img {
+        padding-right: 5px;
+    }
+
+    .filename-title,
+    .filesize-title {
+        font-weight: bold;
+    }
 
     & div {
-        display: inline-block;
+        display: block;
         margin: 15px;
     }
 }
 
 .thumbnail {
-    width: 200px;
+    width: 100px;
+
 }
 
 .overlay {
@@ -220,4 +250,25 @@ input {
         text-decoration: none;
         font-size: 16px;
     }
+}
+
+.menu-item-container {
+    margin-bottom: 25px;
+}
+
+.kiss-img {
+    max-width: 460px;
+    margin: 0 auto;
+}
+
+input[type=file] {
+    display: none;
+}
+
+.file-upload-button {
+}
+
+.file-upload-form-group {
+    margin-top: 15px;
+    // display: inline-block;
 }

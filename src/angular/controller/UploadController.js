@@ -10,21 +10,80 @@ myApp.controller('UploadController', ['$scope', '$rootScope', '$http', '$locatio
         $("body").prepend(html);
     }
 
+    function extround(zahl,n_stelle) {
+        zahl = (Math.round(zahl * n_stelle) / n_stelle);
+        return zahl;
+    }
+
+    function createPreview(files, filesCount, filesShownCount, callback) {
+        var file = files[0];
+
+        var filename = file.name;
+        var filesizeMb = extround(file.size / 1000 / 1000, 100) + " MB";
+
+        var picReader = new FileReader();
+        picReader.addEventListener("load",function(event) {
+            var picFile = event.target;
+            var div = document.createElement("div");
+            // div.innerHTML = "<span class='img-container' style='background-image: url(picFile.result);'><img class='thumbnail' src='" + picFile.result + "'" + "title='preview image'/></span><span class='filename'><span class='filename-title'>Dateiname:</span><br>" + filename + "</span><span class='filesize'><span class='filesize-title'>Dateigröße:</span><br>" + filesizeMb + "</span>";
+            console.log("filename: ", filename);
+            console.log("filesizeMb: ", filesizeMb);
+
+            div.innerHTML = "<span class='preview-row'><span class='img-container' style='background-image: url(" + picFile.result + ");'></span></span><span class='filename'><span class='filename-title'>Dateiname:</span><br>" + filename + "</span><span class='filesize'><span class='filesize-title'>Dateigröße:</span><br>" + filesizeMb + "</span><span class='btn btn-danger remove-preview-img'><span class='glyphicon glyphicon-trash icon-remove-preview-img'></span>entfernen</span>";
+            $("#thumbnails").append(div);
+        });
+        picReader.readAsDataURL(file);
+
+
+        picReader.onload = function (oFREvent) {
+            console.log("filesShownCount: ", filesShownCount);
+            if (filesCount == filesShownCount) {
+                return callback();
+            }
+            else {
+                filesShownCount++
+                console.log("files: ", files.length);
+                files.splice(0, 1);
+                console.log("files: ", files.length);
+
+                createPreview(files, files.length, filesShownCount, callback)
+            }
+        };
+    }
+
     $scope.showUploadPreview = function() {
-        // $("#thumbnails img").remove();
-        // var files = event.target.files;
-        // var filesCount = files.length;
-        // var filesShownCount = 0;
-        //
-        // $(".overlay").removeClass("hide");
-        //
+        $("#thumbnails").html('');
+        var files = event.target.files;
+        var filesCount = files.length;
+        var filesShownCount = 0;
+
+        var filesArray = [];
+        for (var i = 0; i < filesCount; i++) {
+            filesArray.push(files[i]);
+        }
+
+        $(".overlay").removeClass("hide");
+
+        createPreview(filesArray, files.length, 0, function() {
+            console.log("fertig");
+            $(".overlay").addClass("hide");
+        })
+
         // for (var i = 0; i < filesCount; i++) {
         //     var file = files[i];
+        //
+        //     var filename = file.name;
+        //     var filesizeMb = extround(file.size / 1000 / 1000, 100) + " MB";
+        //
         //     var picReader = new FileReader();
-        //     picReader.addEventListener("load",function(event){
+        //     picReader.addEventListener("load",function(event) {
         //         var picFile = event.target;
         //         var div = document.createElement("div");
-        //         div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" + "title='preview image'/>";
+        //         // div.innerHTML = "<span class='img-container' style='background-image: url(picFile.result);'><img class='thumbnail' src='" + picFile.result + "'" + "title='preview image'/></span><span class='filename'><span class='filename-title'>Dateiname:</span><br>" + filename + "</span><span class='filesize'><span class='filesize-title'>Dateigröße:</span><br>" + filesizeMb + "</span>";
+        //         console.log("filename: ", filename);
+        //         console.log("filesizeMb: ", filesizeMb);
+        //
+        //         div.innerHTML = "<span class='preview-row'><span class='img-container' style='background-image: url(" + picFile.result + ");'></span></span><span class='filename'><span class='filename-title'>Dateiname:</span><br>" + filename + "</span><span class='filesize'><span class='filesize-title'>Dateigröße:</span><br>" + filesizeMb + "</span><span class='btn btn-danger remove-preview-img'><span class='glyphicon glyphicon-trash icon-remove-preview-img'></span>entfernen</span>";
         //         $("#thumbnails").append(div);
         //     });
         //     picReader.readAsDataURL(file);

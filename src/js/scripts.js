@@ -1,33 +1,5 @@
 $(document).ready(function() {
 
-    // $('.lightbox-image').on("click", function (event) {
-    //     event.preventDefault();
-    //     event = event || window.event;
-    //     var target = event.target || event.srcElement,
-    //     link = target.src ? target.parentNode : target,
-    //     options = {index: link, event: event},
-    //     links = this.getElementsByTagName('a');
-    //     blueimp.Gallery(links, options);
-    // });
-
-//     document.getElementById('links').onclick = function (event) {
-//     event = event || window.event;
-//     var target = event.target || event.srcElement,
-//         link = target.src ? target.parentNode : target,
-//         options = {index: link, event: event},
-//         links = this.getElementsByTagName('a');
-//     blueimp.Gallery(links, options);
-// };
-
-
-
-
-    // $(".download").on("click", function() {
-    //     event.preventDefault();
-    //     var tFile = $(this).attr("data-filename");
-    //     console.log(tFile);
-    // })
-
     function print_ob(data) {
         var html = '<pre style="border: 1px solid red; padding: 10px;">' + JSON.stringify(data) + '</pre>'
         $("body").prepend(html);

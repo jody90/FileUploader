@@ -24,9 +24,6 @@
             data-index={{$index}}
         >
             <div class="thumbnail-img video-poster"></div>
-            <div class="download" data-filename="{{image.large}}">
-                <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-            </div>
         </a>
 
         <a class="download" ng-href="{{getDownloadLink(image.large)}}" target="_self" ng-if="image.mimetype == 'video/mp4'">

@@ -128,11 +128,15 @@ app.post('/uploaded', upload.single('userFile'), function(req, res) {
         }
     });
 
-    var filename = newFilePath.replace("uploads/", "");
+    var file = newFilePath.replace("uploads/", "");
+
+    var tFilePathArray = file.split("/");
+    var filename = tFilePathArray[tFilePathArray.length - 1];
+    var thumbPath = uploadThumbsFolder + filename;
 
     // Videos auch in Thumbnails aufnehmen direekt
     if (tFile.mimetype == "video/mp4") {
-        fs.createReadStream(newFilePath).pipe(fs.createWriteStream('uploads/thumbs/' + filename));
+        fs.createReadStream(newFilePath).pipe(fs.createWriteStream(thumbPath));
     }
 
     createThumbs(newFilePath, function(uploadState) {

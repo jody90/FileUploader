@@ -17,22 +17,22 @@
                     <label for="uploaderName">Von wem kommt das Bild (optional)</label>
                     <input class="form-control" id="uploaderName" type="text" name="uploaderName" placeholder="Dein Name" />
                 </div>
-                <div class="form-group">
-                    <label for="userFile">Dateien auswählen</label>
+                <div class="form-group file-upload-form-group">
+                    <label for="userFile" class="file-upload-button btn btn-primary">
+                        <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+                        Dateien auswählen
+                    </label>
                     <input id="userFile" type="file" name="userFile" multiple="multiple" onchange="angular.element(this).scope().showUploadPreview();"/>
+                    <button ng-click="uploadForm();" class="btn btn-success margin-top-lg margin-bottom-lg" name="submit" id="submitUpload">
+                        Bilder hochladen
+                    </button>
                 </div>
-                <button ng-click="uploadForm();" class="btn btn-success margin-top-lg margin-bottom-lg" name="submit" id="submitUpload">
-                    Bilder hochladen
-                </button>
 
             </form>
         </div>
-        <div class="col-xs-12 col-md-6">
-            <h3>Vorschau</h3>
-            <div id="thumbnails">
+    </div>
+    <div id="thumbnails">
 
-            </div>
-        </div>
     </div>
 
     <div class="hide multipart-support" data-multipart="true"></div>
