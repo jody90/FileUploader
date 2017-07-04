@@ -11,13 +11,13 @@ var useragent = require('useragent');
 var sharp = require('sharp');
 var mime = require('mime-types');
 
-var load = multer({ dest: './uploads' });
+var load = multer({ dest: __dirname + '/uploads' });
 
 var ejs = require('ejs')
 app.set('view engine', 'ejs')
 
-var uploadFolder = "uploads";
-var uploadThumbsFolder = "uploads/thumbs/";
+var uploadFolder = __dirname + "/uploads";
+var uploadThumbsFolder = __dirname + "/uploads/thumbs/";
 
 var uploadState = {};
 
@@ -84,10 +84,8 @@ var upload = multer({
 
 function createThumbs(file, callback) {
 
-    var thumbReplace = /^uploads\//
-
-    var filename = file.replace(thumbReplace, "");
-
+    var tFilePathArray = file.split("/");
+    var filename = tFilePathArray[tFilePathArray.length - 1];
     var thumbPath = uploadThumbsFolder + filename;
 
     sharp(file)
@@ -97,8 +95,8 @@ function createThumbs(file, callback) {
         var mimetype = mime.contentType(path.extname(file));
 
         uploadState.file = {
-            thumbnail: thumbPath,
-            large: file,
+            thumbnail: "/thumbs/" + filename,
+            large: "/uploads/" + filename,
             mimetype: mimetype,
         }
         return callback(uploadState);
