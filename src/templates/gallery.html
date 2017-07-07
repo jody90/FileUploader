@@ -16,7 +16,7 @@
 <div class="row" id="links">
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 lightbox-image" ng-repeat="image in images">
         <a  ng-if="image.mimetype == 'video/mp4'"
-            ng-href="{{image.midsize}}"
+            ng-href="{{image.large}}"
             title="Hochzeit"
             type="{{image.mimetype}}"
             data-poster="images/video-boy.jpg"
@@ -26,7 +26,7 @@
             <div class="thumbnail-img video-poster"></div>
         </a>
 
-        <a class="download" ng-href="{{getDownloadLink(image.midsize)}}" target="_self" ng-if="image.mimetype == 'video/mp4'">
+        <a class="download" ng-href="{{getDownloadLink(image.large)}}" target="_self" ng-if="image.mimetype == 'video/mp4'">
             <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
             Herunterladen
         </a>
@@ -42,7 +42,7 @@
             <div class="thumbnail-img" style="background-image: url('{{image.thumbnail}}');"></div>
         </a>
 
-        <a class="download" ng-href="{{getDownloadLink(image.midsize)}}" target="_self" ng-if="image.mimetype != 'video/mp4'">
+        <a class="download" ng-href="{{getDownloadLink(image.large)}}" target="_self" ng-if="image.mimetype != 'video/mp4'">
             <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
             Herunterladen
         </a>
@@ -82,7 +82,7 @@
           event.preventDefault();
           event = event || window.event;
           var target = event.target || event.srcElement;
-          var index = $(element).attr("data-index");
+          var index = parseInt($(element).attr("data-index"));
           var options = {
               index: index,
               event: event,
