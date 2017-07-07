@@ -7,37 +7,62 @@
     Zurück zum Hauptmenü
 </a>
 
-<div ng-if="!isAndroid">
+<!-- <div ng-if="!isAndroid"> -->
 
     <div class="row">
         <div class="col-xs-12 col-md-6">
 
-            <form id="uploadForm" enctype="multipart/form-data" method="post">
+            <form id="uploadForm">
                 <div class="form-group">
                     <label for="uploaderName">Von wem kommt das Bild (optional)</label>
-                    <input class="form-control" id="uploaderName" type="text" name="uploaderName" placeholder="Dein Name" />
+                    <input class="form-control" ng-change="updateUploaderName()" ng-model="form.uploaderName" id="uploaderName" type="text" name="uploaderName" placeholder="Dein Name" />
+                    {{uploaderName}}
                 </div>
                 <div class="form-group file-upload-form-group">
                     <label for="userFile" class="file-upload-button btn btn-primary">
                         <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
-                        Dateien auswählen
+                        Datei auswählen
                     </label>
-                    <input id="userFile" type="file" name="userFile" multiple="multiple" onchange="angular.element(this).scope().showUploadPreview();"/>
-                    <button ng-click="uploadForm();" class="btn btn-success margin-top-lg margin-bottom-lg" name="submit" id="submitUpload">
+
+                    <input id="userFile" multiple="multiple" onchange="angular.element(this).scope().file_changed(this)" type="file" accept="image/*|video/*" name="userFile"/>
+                    <!-- <input id="userFile" type="file" name="userFile" multiple="multiple" onchange="angular.element(this).scope().showUploadPreview();"/> -->
+                    <!-- <input id="userFile" type="file" name="userFile" multiple="multiple" data-bind-file="" data-ng-model="theFile"/> -->
+                    <!-- <input id="userFile" type="file" name="userFile" multiple="multiple" fileread="fileread.src"/> -->
+
+                    <button ng-click="uploadFiles();" class="btn btn-success margin-top-lg margin-bottom-lg" name="submit" id="submitUpload">
+                    <!-- <button ng-click="uploadForm();" class="btn btn-success margin-top-lg margin-bottom-lg" name="submit" id="submitUpload"> -->
                         Bilder hochladen
                     </button>
                 </div>
-
             </form>
         </div>
     </div>
-    <div id="thumbnails">
 
+    <div id="thumbnails">
+        <div ng-repeat="thumb in filesArray.thumbs" class="row preview-row">
+            <div class='col-xs-12 col-sm-4 img-container' style='background-image: url("{{thumb.picFile}}");'></div>
+            <div class='col-xs-12 col-sm-4 filename'>
+                <div class='filename-title'>
+                    Dateiname:
+                </div>
+                {{thumb.filename}}
+            </div>
+            <div class='col-xs-12 col-sm-4 filesize'>
+                <div class='filesize-title'>
+                    Dateigröße:
+                </div>
+                {{thumb.filesize}}
+            </div>
+            <div ng-click="removeThumbnail($index)" class='col-xs-12 col-sm-2 btn btn-danger remove-preview-img'>
+                <span class='glyphicon glyphicon-trash icon-remove-preview-img'></span>
+                entfernen
+            </div>
+        </div>
     </div>
 
     <div class="hide multipart-support" data-multipart="true"></div>
-</div>
-
+<!-- </div> -->
+<!--
 <div ng-if="isAndroid">
     <div class="row">
         <div class="col-xs-12">
@@ -68,4 +93,4 @@
     </div>
 
     <div class="hide multipart-support" data-multipart="false"></div>
-</div>
+</div> -->

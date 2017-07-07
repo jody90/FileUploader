@@ -21,7 +21,7 @@ myApp.controller('GalleryController', ['$scope', '$http', '$rootScope', '$routeP
     }
 
     $scope.getDownloadLink = function(tFile) {
-        event.preventDefault()
+        // event.preventDefault()
         var tFileArray =  tFile.split("/");
         var filename = tFileArray[tFileArray.length - 1];
         var url = '/download/' + filename;
