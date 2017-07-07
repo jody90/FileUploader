@@ -122,25 +122,6 @@ myApp.controller('UploadController', ['$scope', '$rootScope', '$http', '$locatio
 
     }
 
-    $scope.showUploadPreview = function() {
-        $("#thumbnails").html('');
-        var files = event.target.files;
-        var filesCount = files.length;
-        var filesShownCount = 0;
-
-        var filesArray = [];
-        for (var i = 0; i < filesCount; i++) {
-            filesArray.push(files[i]);
-        }
-
-        $(".overlay").removeClass("hide");
-
-        createPreview(filesArray, files.length, function() {
-            console.log("fertig");
-            $(".overlay").addClass("hide");
-        })
-    }
-
     function uploadFile(data, counter, filesTotal, callback) {
 
         var files = data.files;
@@ -190,46 +171,4 @@ myApp.controller('UploadController', ['$scope', '$rootScope', '$http', '$locatio
             }
         });
     }
-
-    $scope.uploadForm = function() {
-
-        // $rootScope.uploading = true;
-        //
-        // var uploaderName = $("#uploaderName").val();
-        //
-        // var uploadData = {
-        //     uploaderName: uploaderName,
-        //     files: []
-        // };
-        //
-        // if (!$scope.isAndroid) {
-        //     $.each($('#userFile')[0].files, function(i, file) {
-        //         uploadData.files.push(file);
-        //     });
-        // }
-        // else {
-        //     var inputElementsCount = $("#uploadForm").find(".userFile").length;
-        //     $.each($("#uploadForm").find(".userFile"), function(i, element) {
-        //         var file = $(element)[0].files[0];
-        //         if (i + 1 < inputElementsCount) {
-        //             uploadData.files.push(file);
-        //             console.log(uploadData);
-        //         }
-        //     })
-        // }
-        //
-        // // eins von beiden ist immer gefuellt
-        // // inputElementsCount immer eins abziehen weil wir ein element mehr im dom haben
-        // var filesCount = inputElementsCount === undefined ? $('#userFile')[0].files.length : inputElementsCount - 1;
-        // console.log("filesCount: ", filesCount);
-        //
-        // if (uploadData.files.length == filesCount  && uploadData.files.length > 0) {
-        //     uploadFile(uploadData, 0, uploadData.files.length, function() {
-        //         console.log("alle oben");
-        //     })
-        // }
-        //
-        // $location.path( "/gallery/uploading" );
-    }
-
 }])
