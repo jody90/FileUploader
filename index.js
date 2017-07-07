@@ -18,6 +18,7 @@ app.set('view engine', 'ejs')
 
 var uploadFolder = __dirname + "/uploads";
 var uploadThumbsFolder = __dirname + "/uploads/thumbs/";
+var midsizeFolder = __dirname + "/uploads/midsize/";
 
 var uploadState = {};
 
@@ -30,6 +31,7 @@ app.use('/fonts', express.static(__dirname + '/ressources/fonts'));
 app.use('/scripts', express.static(__dirname + '/ressources/js'));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use('/thumbs', express.static(__dirname + '/uploads/thumbs'));
+app.use('/midsize', express.static(__dirname + '/uploads/midsize'));
 app.use(bodyParser.urlencoded({extended: true})); // configure the app to use bodyParser()
 
 // Routing
@@ -38,10 +40,10 @@ app.get('/', function(req, res) {
 })
 
 app.get('/download/:file(*)', function(req, res, next){
-  var file = req.params.file;
-  var path = uploadFolder + "/" + file;
+    var file = req.params.file;
+    var path = uploadFolder + "/" + file;
 
-  res.download(path);
+    res.download(path);
 });
 
 app.get('/gallery', function(req, res) {
@@ -52,10 +54,12 @@ app.get('/gallery', function(req, res) {
                 if (tFiles[i] !== "temp" && tFiles[i] !== ".directory") {
                     var thumbnail = "thumbs/" + tFiles[i];
                     var large = "uploads/" + tFiles[i];
+                    var midsize = "midsize/" + tFiles[i];
                     var mimetype = mime.contentType(tFiles[i]);
 
                     var tImageData = {
                         thumbnail: thumbnail,
+                        midsize: midsize,
                         large: large,
                         mimetype: mimetype
                     }
@@ -94,19 +98,26 @@ function createThumbs(file, callback) {
     var tFilePathArray = file.split("/");
     var filename = tFilePathArray[tFilePathArray.length - 1];
     var thumbPath = uploadThumbsFolder + filename;
+    var midsizePath = midsizeFolder + filename;
 
     sharp(file)
     .resize(256)
     .toFile(thumbPath, function(err, info) {
 
-        var mimetype = mime.contentType(path.extname(file));
+        sharp(file)
+        .resize(800)
+        .toFile(midsizePath, function(err, info) {
 
-        uploadState.file = {
-            thumbnail: "/thumbs/" + filename,
-            large: "/uploads/" + filename,
-            mimetype: mimetype,
-        }
-        return callback(uploadState);
+            var mimetype = mime.contentType(path.extname(file));
+
+            uploadState.file = {
+                thumbnail: "/thumbs/" + filename,
+                large: "/uploads/" + filename,
+                midsize: "/midsize/" + filename,
+                mimetype: mimetype,
+            }
+            return callback(uploadState);
+        });
     });
 }
 
