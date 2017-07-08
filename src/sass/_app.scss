@@ -84,6 +84,13 @@ input {
     margin-left: 45px;
 }
 
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    background-color: #772d50;
+    color: #ffffff;
+}
+
 .burger-text {
     float: left;
     margin-top: -3px;
