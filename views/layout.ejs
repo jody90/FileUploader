@@ -30,6 +30,7 @@
 
 </head>
 <body ng-app="MyApp">
+
     <div class="overlay hide">
         <img class="loading" src="/images/loading.gif">
     </div>
@@ -40,27 +41,63 @@
             <h1>{{headerText}}</h1>
         </div>
 
-        <a href="#!/" class="back-main-menu" ng-if="currentPath != '/'">
+        <nav class="navbar navbar-default navbar-static-top">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <div class="burger-text">
+                            Menü
+                        </div>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#!/">
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#!/upload">
+                                <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+                                Upload
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#!/gallery">
+                                <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+                                Gallerie
+                            </a>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+
+        </nav>
+
+        <!-- <a href="#!/" class="back-main-menu" ng-if="currentPath != '/'">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
             Zurück zum Hauptmenü
-        </a>
+        </a> -->
 
         <!-- <div ng-if="showProgressBar">
-            Deine Dateien werden gerade hochgeladen. Bitte warte mit dem nächsten Upload bis die Anzeige bei 100% ist.
-        </div> -->
-        <div class="progress" ng-if="showProgressBar">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{uploadPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width:{{uploadPercentage}}%">
-                {{uploadPercentage}}%
-            </div>
+        Deine Dateien werden gerade hochgeladen. Bitte warte mit dem nächsten Upload bis die Anzeige bei 100% ist.
+    </div> -->
+    <div class="progress" ng-if="showProgressBar">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{uploadPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width:{{uploadPercentage}}%">
+            {{uploadPercentage}}%
         </div>
-
-        <div ng-view></div>
-
     </div>
 
-    <script type="text/javascript" src="scripts/scripts.min.js"></script>
-    <script type="text/javascript" src="scripts/jquery.blueimp-gallery.min.js"></script>
-    <script type="text/javascript" src="scripts/blueimp-gallery-video.js"></script>
+    <div ng-view></div>
+
+</div>
+
+<script type="text/javascript" src="scripts/scripts.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.blueimp-gallery.min.js"></script>
+<script type="text/javascript" src="scripts/blueimp-gallery-video.js"></script>
 
 </body>
 </html>
