@@ -1,55 +1,29 @@
 myApp.controller('GalleryController', ['$scope', '$http', '$rootScope', '$routeParams', function($scope, $http, $rootScope, $routeParams) {
 
-    if ($routeParams.isUploading !== undefined && $rootScope.uploading) {
-
-        $rootScope.showProgressBar = true
-
-        $rootScope.uploadPercentage = $rootScope.uploadPercentage || 1;
-
-        // var countPercentage = setInterval(function() {
-        //     $rootScope.$apply(function() {
-        //         var percentageAdd = $rootScope.uploadPercentage > 40 ? 1 : 3;
-        //         $rootScope.uploadPercentage = parseInt($rootScope.uploadPercentage) + percentageAdd;
-        //
-        //         if ($rootScope.uploadPercentage >= 99) {
-        //             $rootScope.uploadPercentage = 100;
-        //             clearInterval(countPercentage);
-        //         }
-        //
-        //     });
-        // }, 2500);
-    }
-
     $scope.getDownloadLink = function(tFile) {
-        // event.preventDefault()
         var tFileArray =  tFile.split("/");
         var filename = tFileArray[tFileArray.length - 1];
         var url = '/download/' + filename;
         return url;
-        // var posting = $http({
-        //     method: 'GET',
-        //     url: '/download/' + filename
-        // })
-        // console.log("tFile: ", filename);
     }
 
     $scope.downloadFile = function(tFile) {
         event.preventDefault()
         var tFileArray =  tFile.split("/");
         var filename = tFileArray[tFileArray.length - 1];
-        var posting = $http({
+        $http({
             method: 'GET',
             url: '/download/' + filename
         })
-        console.log("tFile: ", filename);
     }
 
-    var posting = $http({
+    var getGalleryImages = $http({
         method: 'GET',
         url: '/gallery'
     })
 
-    posting.then(function (response) {
+    getGalleryImages.then(function (response) {
+
         var tImages = response.data;
         if ($rootScope.images == undefined) {
             $rootScope.images = [];

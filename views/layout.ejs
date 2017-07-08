@@ -8,26 +8,21 @@
     <title>Hochzeit Barbara Matthias</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="ressources/images/favicon.png" type="image/png" />
-    <link rel="icon" href="ressources/images/favicon.png" type="image/png" />
+    <link rel="shortcut icon" href="ressources/images/favicon.ico" type="image/ico" />
+    <link rel="icon" href="ressources/images/favicon.ico" type="image/ico" />
 
     <!-- CSS Styles -->
-    <!-- Librarys -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-
-    <!-- Custom -->
     <link rel="stylesheet" href="css/style.min.css">
 
     <!-- JS Scripts -->
     <!-- Librarys -->
     <script type="text/javascript" src="scripts/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/angular.min.js"></script>
-    <script type="text/javascript" src="scripts/mobile-detect.min.js"></script>
     <script type="text/javascript" src="scripts/angular-route.min.js"></script>
     <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
 
     <!-- Custom -->
-    <script type="text/javascript" src="angular/angular.min.js"></script>
+    <script type="text/javascript" src="angular/customAngular.min.js"></script>
 
 </head>
 <body ng-app="MyApp">
@@ -36,6 +31,24 @@
     </div>
 
     <div class="container-fluid">
+
+        <div class="header">
+            <h1>{{headerText}}</h1>
+        </div>
+
+        <a href="#!/" class="back-main-menu" ng-if="currentPath != '/'">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            Zurück zum Hauptmenü
+        </a>
+
+        <!-- <div ng-if="showProgressBar">
+            Deine Dateien werden gerade hochgeladen. Bitte warte mit dem nächsten Upload bis die Anzeige bei 100% ist.
+        </div> -->
+        <div class="progress" ng-if="showProgressBar">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{uploadPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width:{{uploadPercentage}}%">
+                {{uploadPercentage}}%
+            </div>
+        </div>
 
         <div ng-view></div>
 

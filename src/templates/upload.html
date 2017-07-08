@@ -1,12 +1,3 @@
-<div class="header">
-    <h1>Bilder und Video Hochladen</h1>
-</div>
-
-<a  href="#!/" class="back-main-menu">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    Zurück zum Hauptmenü
-</a>
-
 <div class="row">
     <div class="col-xs-12 col-md-6">
 
@@ -17,14 +8,15 @@
                 {{uploaderName}}
             </div>
             <div class="form-group file-upload-form-group">
-                <label for="userFile" class="file-upload-button btn btn-primary">
+                <!-- <label for="userFile" class="file-upload-button btn btn-primary" ng-class="!showProgressBar ? '' : 'disabled'"> -->
+                <label for="userFile" class="file-upload-button btn btn-primary" ng-disabled="showProgressBar">
                     <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
                     Datei auswählen
                 </label>
 
-                <input id="userFile" multiple="multiple" onchange="angular.element(this).scope().file_changed(this)" type="file" accept="image/*|video/*" name="userFile"/>
+                <input id="userFile" multiple="multiple" ng-disabled="showProgressBar" onchange="angular.element(this).scope().file_changed(this)" type="file" accept="image/*|video/*" name="userFile"/>
 
-                <button ng-click="uploadFiles();" class="btn btn-success margin-top-lg margin-bottom-lg" name="submit" id="submitUpload">
+                <button ng-click="uploadFiles();" ng-disabled="showProgressBar || filesArray.files.length < 1" class="btn btn-success margin-top-lg margin-bottom-lg" name="submit" id="submitUpload">
                     Bilder hochladen
                 </button>
             </div>
@@ -32,7 +24,7 @@
     </div>
 </div>
 
-<div id="thumbnails">
+<div id="thumbnails" ng-class="filesArray.thumbs.length < 1 ? 'hide' : ''">
     <div ng-repeat="thumb in filesArray.thumbs" class="row preview-row">
         <div class='col-xs-12 col-sm-4 img-container' style='background-image: url("{{thumb.picFile}}");'></div>
         <div class='col-xs-12 col-sm-4 filename'>

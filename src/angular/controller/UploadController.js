@@ -1,10 +1,5 @@
 myApp.controller('UploadController', ['$scope', '$rootScope', '$http', '$location', function($scope, $rootScope, $http, $location) {
 
-    var multipart = $(".multipart-support").attr("data-multipart");
-    var md = new MobileDetect(window.navigator.userAgent);
-
-    $scope.isAndroid = md.os() == "AndroidOS" ? true : false;
-
     $scope.filesArray = {};
     $scope.filesArray.files = [];
     $scope.filesArray.thumbs = [];
@@ -36,6 +31,32 @@ myApp.controller('UploadController', ['$scope', '$rootScope', '$http', '$locatio
             $(".overlay").addClass("hide");
         })
     };
+
+    $scope.uploadFiles = function() {
+
+        $rootScope.uploading = true;
+
+        var uploaderName = $("#uploaderName").val();
+
+        var uploadData = {
+            uploaderName: $scope.form.uploaderName,
+            files: $scope.filesArray.files
+        };
+
+        if (uploadData.files.length > 0) {
+            uploadFile(uploadData, 0, uploadData.files.length, function() {
+
+                // Noch kurz anzeigen dass alles hochgeladen ist
+                setTimeout(function() {
+                    $rootScope.uploading = false;
+                    $rootScope.$apply();
+                }, 2500);
+            })
+        }
+
+        $location.path( "/gallery/uploading" );
+
+    }
 
     function print_ob(data) {
         var html = '<pre style="border: 1px solid red; padding: 10px;">' + JSON.stringify(data) + '</pre>'
@@ -101,27 +122,6 @@ myApp.controller('UploadController', ['$scope', '$rootScope', '$http', '$locatio
         }
     }
 
-    $scope.uploadFiles = function() {
-
-        $rootScope.uploading = true;
-
-        var uploaderName = $("#uploaderName").val();
-
-        var uploadData = {
-            uploaderName: $scope.form.uploaderName,
-            files: $scope.filesArray.files
-        };
-
-        if (uploadData.files.length > 0) {
-            uploadFile(uploadData, 0, uploadData.files.length, function() {
-                console.log("alle oben");
-            })
-        }
-
-        $location.path( "/gallery/uploading" );
-
-    }
-
     function uploadFile(data, counter, filesTotal, callback) {
 
         var files = data.files;
@@ -130,8 +130,6 @@ myApp.controller('UploadController', ['$scope', '$rootScope', '$http', '$locatio
         formData.append("uploaderName", data.uploaderName);
 
         formData.append("userFile", files[0]);
-
-        console.log("counter: ", counter);
 
         var posting = $http({
             method: 'POST',

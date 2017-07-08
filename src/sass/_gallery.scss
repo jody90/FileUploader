@@ -1,0 +1,32 @@
+.blueimp-gallery-controls {
+    display: block;
+}
+
+.blueimp-gallery > .close, .blueimp-gallery > .title,
+.blueimp-gallery > .prev, .blueimp-gallery > .next,
+.blueimp-gallery > .prev, .blueimp-gallery > .next {
+    display: block;
+}
+
+.lightbox-image {
+    a {
+        color: #ffffff;
+        text-decoration: none;
+    }
+}
+
+.download {
+    text-align: center;
+    background: rgba(160,1,139,0.39);
+    box-sizing: border-box;
+    display: block;
+
+    & span {
+        vertical-align: middle;
+        padding: 8px 0;
+        box-sizing: border-box;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 16px;
+    }
+}

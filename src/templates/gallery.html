@@ -1,18 +1,3 @@
-<div class="header">
-    <h1>Gallerie</h1>
-</div>
-
-<a  href="#!/" class="back-main-menu">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    Zurück zum Hauptmenü
-</a>
-
-<div class="progress" ng-if="showProgressBar">
-    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{uploadPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width:{{uploadPercentage}}%">
-        {{uploadPercentage}}%
-    </div>
-</div>
-
 <div class="row" id="links">
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 lightbox-image" ng-repeat="image in images">
         <a  ng-if="image.mimetype == 'video/mp4'"
@@ -22,6 +7,7 @@
             data-poster="images/video-boy.jpg"
             onclick="openLightbox(window.event, $(this))"
             data-index={{$index}}
+            class="image"
         >
             <div class="thumbnail-img video-poster"></div>
         </a>
@@ -38,6 +24,7 @@
             thumbnail="{{image.thumbnail}}"
             onclick="openLightbox(window.event, $(this))"
             data-index={{$index}}
+            class="image"
         >
             <div class="thumbnail-img" style="background-image: url('{{image.thumbnail}}');"></div>
         </a>
@@ -62,21 +49,6 @@
 </div>
 
 <script>
-    // document.getElementById('links').onclick = function (event) {
-    //     event = event || window.event;
-    //     var target = event.target || event.srcElement;
-    //     var link = target.src ? target.parentNode : target;
-    //     var options = {index: link, event: event};
-    //     var links = this.getElementsByTagName('a');
-    //
-    //     console.log("target: ", target);
-    //     console.log("link: ", link);
-    //     console.log("options: ", options);
-    //     console.log("links: ", links);
-    //
-    //     blueimp.Gallery(links, options);
-    // };
-
     function openLightbox(event, element) {
 
           event.preventDefault();
@@ -88,12 +60,11 @@
               event: event,
               toggleControlsOnReturn: false,
               toggleControlsOnSlideClick: false,
-              hidePageScrollbars: true,
+              hidePageScrollbars: true
           };
           var parent = $(element).parents().find("#links");
-          var links = $(parent).find("a");
+          var links = $(parent).find(".image");
 
           blueimp.Gallery(links, options);
     }
-
 </script>

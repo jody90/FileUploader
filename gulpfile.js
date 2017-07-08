@@ -9,7 +9,11 @@ var rename     = require('gulp-rename');
 var livereload = require('gulp-livereload');
 var gutil      = require('gulp-util');
 var dirSync    = require('gulp-directory-sync');
-var server     = require('gulp-server-livereload');
+var fs         = require('fs');
+
+var uploadsDir = './uploads';
+var thumbsDir = './uploads/thumbs';
+var midsizeDir = './uploads/midsize';
 
 var scripts = [
     './src/js/scripts.js'
@@ -24,24 +28,31 @@ var sassFiles = './src/sass/*.scss';
 var jsFiles = './src/js/*.js';
 var angularFiles = './src/angular/**/*.js';
 var imageFiles = './src/images';
+var jsLibrarys = './src/librarys';
+var fonts = './src/fonts';
 
 function handleError(err) {
     console.error(err.toString());
     this.emit('end');
 }
 
-gulp.task('webserver', function() {
-    gulp.src('')
-    .pipe(server({
-        livereload: true,
-        directoryListing: false,
-        open: false,
-        port:3000
-    }));
-});
+gulp.task('createFolders', function() {
+    if (!fs.existsSync(uploadsDir)){
+        fs.mkdirSync(uploadsDir);
+    }
+    // kurz warten damit Ordner uploads auch wirklich erstellt wurde
+    setTimeout(function() {
+        if (!fs.existsSync(thumbsDir)){
+            fs.mkdirSync(thumbsDir);
+        }
+        if (!fs.existsSync(midsizeDir)){
+                fs.mkdirSync(midsizeDir);
+        }
+    }, 500);
+})
 
 gulp.task('watch', function() {
-    gulp.watch([sassFiles, jsFiles, angularFiles, imageFiles], ['sass', 'js', 'angular', 'images']);
+    gulp.watch([sassFiles, jsFiles, angularFiles, imageFiles, jsLibrarys, fonts], ['sass', 'js', 'angular', 'images', 'librarys', 'fonts']);
 })
 
 gulp.task('images', function() {
@@ -51,12 +62,26 @@ gulp.task('images', function() {
         .pipe(livereload());
 })
 
+gulp.task('librarys', function() {
+    return gulp.src( '' )
+        .pipe(dirSync( jsLibrarys, './ressources/js', { printSummary: true } ))
+        .on('error', handleError)
+        .pipe(livereload());
+})
+
+gulp.task('fonts', function() {
+    return gulp.src( '' )
+        .pipe(dirSync( fonts, './ressources/fonts', { printSummary: true } ))
+        .on('error', handleError)
+        .pipe(livereload());
+})
+
 gulp.task('js', function() {
     return gulp.src(jsFiles)
     .pipe(sourcemaps.init())
     .pipe(concat('scripts.min.js'))
     .pipe(sourcemaps.write())
-    // .pipe(uglify())
+    .pipe(uglify())
     .pipe(gulp.dest('./ressources/js'))
     .pipe(livereload());
 });
@@ -64,7 +89,7 @@ gulp.task('js', function() {
 gulp.task('angular', function() {
     return gulp.src(angularScripts)
         .pipe(sourcemaps.init())
-        .pipe(concat('angular.min.js'))
+        .pipe(concat('customAngular.min.js'))
         // .pipe(uglify())
         .pipe(gulp.dest('./ressources/angular'))
         .pipe(livereload());
@@ -84,4 +109,4 @@ gulp.task('sass', function () {
 });
 
 // Default Task
-gulp.task('default', ['sass', 'js', 'angular', 'images', 'watch']);
+gulp.task('default', ['sass', 'js', 'angular', 'images', 'librarys', 'fonts', 'createFolders', 'watch']);

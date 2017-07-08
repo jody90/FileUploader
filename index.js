@@ -1,15 +1,13 @@
-var express = require("express")
-var multer = require('multer')
-var app = express()
-var path = require('path')
-var moment = require('moment');
-// var cDrive = require('./cDrive');
-var fs = require('fs');
-var q = require("q");
+var express    = require("express")
+var multer     = require('multer')
+var app        = express()
+var path       = require('path')
+var moment     = require('moment');
+var fs         = require('fs');
+var q          = require("q");
 var bodyParser = require("body-parser");
-var useragent = require('useragent');
-var sharp = require('sharp');
-var mime = require('mime-types');
+var sharp      = require('sharp');
+var mime       = require('mime-types');
 
 var load = multer({ dest: __dirname + '/uploads' });
 
@@ -105,7 +103,7 @@ function createThumbs(file, callback) {
     .toFile(thumbPath, function(err, info) {
 
         sharp(file)
-        .resize(800)
+        .resize(1200)
         .toFile(midsizePath, function(err, info) {
 
             var mimetype = mime.contentType(path.extname(file));

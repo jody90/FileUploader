@@ -1,0 +1,39 @@
+#links {
+    margin-bottom: 30px;
+}
+
+.menu-cell {
+    margin-top: 15px;
+}
+
+.menu-item {
+    background: rgba(160,1,139,.4);
+    border: 1px solid rgb(133, 3, 144);
+    display: inline-block;
+    border-radius: 0px;
+    font-size: 24px;
+    display: block;
+    padding: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all .3s ease;
+    box-sizing: border-box;
+}
+
+.menu-item:hover {
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    border-radius: 5px;
+    text-decoration: none;
+    box-shadow: 0px 0px 8px rgba(134, 1, 105, 1);
+}
+
+.menu-item-container {
+    margin-bottom: 25px;
+}
+
+.kiss-img {
+    max-width: 460px;
+    margin: 0 auto;
+}

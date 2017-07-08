@@ -22,73 +22,45 @@ myApp.config(function($routeProvider) {
     .otherwise({redirectTo: "/"});
 })
 
-myApp.run(function($rootScope) {
+
+
+myApp.run(['$rootScope', '$location', '$routeParams', function($rootScope, $location, $routeParams) {
+
+    var showProgressBar = function(value) {
+        if (value) {
+            $rootScope.showProgressBar = true;
+            $rootScope.uploadPercentage = $rootScope.uploadPercentage || 1;
+        }
+        else {
+            $rootScope.showProgressBar = false;
+            $rootScope.uploadPercentage = 0;
+        }
+    }
+
+    $rootScope.$on('$routeChangeSuccess', function(e, current, pre) {
+        $rootScope.currentPath = $location.path();
+
+        switch ($rootScope.currentPath) {
+            case "/" :
+            $rootScope.headerText = "Willkommen auf der Hochzeit von Barbara und Matthias";
+            break;
+            case "/gallery" :
+                $rootScope.headerText = "Gallerie";
+            break;
+            case "/upload" :
+                $rootScope.headerText = "Bilder und Videos Hochladen";
+            break;
+        }
+
+        showProgressBar($rootScope.uploading);
+
+    });
+
+    // Wenn sich uploading value aendert showProgressBar aufrufen
+    $rootScope.$watch("uploading", function(value) {
+        showProgressBar(value);
+      });
 
     $rootScope.uploading = false;
-    //
-    // if (window.WebSocket && typeof(Storage) !== "undefined") {
-    //
-    //     // console.info("websocket supported");
-    //
-    //     var socket = io();
-    //
-    //     socket.on('connect', function() {
-    //         // console.log("WS connected");
-    //
-    //         var uuid = localStorage.getItem("uuid");
-    //         var data = {
-    //             uuid: uuid
-    //         };
-    //         socket.emit('clientmeta', data);
-    //     });
-    //
-    //     socket.on('clientmeta', function(msg) {
-    //         console.log("clientmeta msg: ", msg);
-    //         localStorage.setItem("uuid", msg.uuid);
-    //     });
-    //
-    //     // socket.on('uploadState', function(msg) {
-    //     //     // console.log("uploadState msg: ", msg);
-    //     //
-    //     //     if ($rootScope.images == undefined) {
-    //     //         $rootScope.images = [];
-    //     //     }
-    //     //
-    //     //     $rootScope.$apply(function() {
-    //     //         $rootScope.images.unshift(msg.file);
-    //     //
-    //     //         // var filesProcessed = msg.filesProcessed;
-    //     //         // var filesTotal = msg.filesTotal;
-    //     //         // var uploadPercentage = Math.round((100 / filesTotal) * filesProcessed);
-    //     //         //
-    //     //         // $rootScope.uploadPercentage = uploadPercentage;
-    //     //     });
-    //     //
-    //     //
-    //     //
-    //     //
-    //     //     // console.log($rootScope.images);
-    //     //     // print_ob(msg);
-    //     // });
-    // }
-    // else {
-    //     console.info("websocket NOT supported");
-    // }
-});
 
-
-// myApp.factory("MyException", function() {
-//
-//     function MyException(name, message, throwingClass) {
-//         this.name = name;
-//         this.message = message;
-//         this.throwingClass = throwingClass;
-//         this.method = method;
-//     }
-//
-//     MyException.prototype = new Error();
-//     MyException.prototype.constructor = MyException;
-//
-//     return MyException
-//
-// })
+}]);
