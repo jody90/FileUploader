@@ -54,6 +54,8 @@ myApp.run(['$rootScope', '$location', '$routeParams', function($rootScope, $loca
 
         showProgressBar($rootScope.uploading);
 
+        $('.navbar-collapse').collapse('toggle');
+
     });
 
     // Wenn sich uploading value aendert showProgressBar aufrufen
