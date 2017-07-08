@@ -54,7 +54,7 @@ myApp.run(['$rootScope', '$location', '$routeParams', function($rootScope, $loca
 
         showProgressBar($rootScope.uploading);
 
-        $('.navbar-collapse').collapse('toggle');
+        $('.navbar-collapse').collapse('hide');
 
     });
 
