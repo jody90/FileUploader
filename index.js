@@ -66,7 +66,6 @@ app.get('/gallery', function(req, res) {
             }
             // files.reverse();
             res.end(JSON.stringify(files))
-            // console.log(files);
         }
         else {
             // res.end(JSON.stringify({status: 500, message: "Thumbs Folder is empty"}));
