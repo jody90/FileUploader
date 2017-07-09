@@ -25,7 +25,7 @@
 </div>
 
 <div id="thumbnails" ng-class="filesArray.thumbs.length < 1 ? 'hide' : ''">
-    <span class="label label-default upload-file-count" ng-if="filesArray.thumbs.length > 0">
+    <span class="label label-primary upload-file-count" ng-if="filesArray.thumbs.length > 0">
         {{filesArray.thumbs.length}} Datei<span ng-if="filesArray.thumbs.length > 1">en</span> zum Upload vorgemerkt
     </span>
     <div ng-repeat="thumb in filesArray.thumbs" class="row preview-row">
