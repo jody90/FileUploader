@@ -14,6 +14,10 @@ var load = multer({ dest: __dirname + '/uploads' });
 var ejs = require('ejs')
 app.set('view engine', 'ejs')
 
+moment.locale('de');
+
+var timeFormat = 'YYYY-MM-DD_HH:mm:ss';
+
 var uploadFolder = __dirname + "/uploads";
 var uploadThumbsFolder = __dirname + "/uploads/thumbs/";
 var midsizeFolder = __dirname + "/uploads/midsize/";
@@ -83,7 +87,7 @@ var storage = multer.diskStorage({
 
         var randomNumber = Math.floor((Math.random() * 100) + 1);
 
-        callback(null, moment().format('YYYY-MM-DD_hh:mm:ss:SSS') + '-Hochzeit-#' + new Date().getMilliseconds() + "#" + path.extname(file.originalname))
+        callback(null, moment().format(timeFormat) + '-Hochzeit-#' + new Date().getMilliseconds() + "#" + path.extname(file.originalname))
     }
 })
 
