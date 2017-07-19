@@ -64,7 +64,7 @@ app.get('/gallery', function(req, res) {
                     files.push(tImageData);
                 }
             }
-            // files.reverse();
+            files.reverse();
             res.end(JSON.stringify(files))
         }
         else {
