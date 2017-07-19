@@ -1,4 +1,86 @@
+<!-- <div id="aniimated-thumbnials">
+  <a ng-href="{{image.thumbnail}}" ng-repeat="image in images">
+      <img ng-src="{{image.midsize}}" />
+  </a>
+</div> -->
+
+<!-- ng-repeat="image in images" -->
+<!-- <div ng-repeat="image in images">
+    {{image.large}}<br>
+    {{image.thumbnail}}
+    <hr>
+
+</div> -->
+
+<!-- <div class="demo-gallery">
+    <ul id="lightgallery" class="list-unstyled row">
+        <li ng-repeat="image in images" class="col-xs-6 col-sm-4 col-md-3" data-src="{{image.large}}">
+            <a href="">
+                <img class="img-responsive" ng-src="{{image.thumbnail}}">
+            </a>
+        </li>
+        <li class="col-xs-6 col-sm-4 col-md-3" data-src="img/2-1600.jpg">
+            <a href="">
+                <img class="img-responsive" src="img/thumb-2.jpg">
+            </a>
+        </li>
+    </ul>
+</div> -->
+<!-- <div class="demo-gallery">
+    <ul id="lightgallery" class="list-unstyled row">
+        <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="img/2-375.jpg 375, img/2-480.jpg 480, img/2.jpg 800" data-src="img/2-1600.jpg" data-sub-html="<h4>Bowness Bay</h4><p>A beautiful Sunrise this morning taken En-route to Keswick not one as planned but I'm extremely happy I was passing the right place at the right time....</p>">
+            <a href="">
+                <img class="img-responsive" src="img/thumb-2.jpg">
+            </a>
+        </li>
+        <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="img/13-375.jpg 375, img/13-480.jpg 480, img/13.jpg 800" data-src="img/13-1600.jpg" data-sub-html="<h4>Bowness Bay</h4><p>A beautiful Sunrise this morning taken En-route to Keswick not one as planned but I'm extremely happy I was passing the right place at the right time....</p>">
+            <a href="">
+                <img class="img-responsive" src="img/thumb-13.jpg">
+            </a>
+        </li>
+        <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="img/4-375.jpg 375, img/4-480.jpg 480, img/4.jpg 800" data-src="img/4-1600.jpg" data-sub-html="<h4>Bowness Bay</h4><p>A beautiful Sunrise this morning taken En-route to Keswick not one as planned but I'm extremely happy I was passing the right place at the right time....</p>">
+            <a href="">
+                <img class="img-responsive" src="img/thumb-4.jpg">
+            </a>
+        </li>
+    </ul>
+</div> -->
+
 <div class="row" id="links">
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 lightbox-image" ng-repeat="image in images">
+        <div ng-if="image.mimetype == 'video/mp4'" style="display:none;" id="video_{{$index}}">
+            <video class="lg-video-object lg-html5 video-js vjs-default-skin" controls preload="none">
+                <source src="{{image.large}}" type="{{image.mimetype}}">
+                 Your browser does not support HTML5 video.
+            </video>
+        </div>
+        <a  ng-if="image.mimetype == 'video/mp4'"
+            class="image"
+            data-poster="images/video-boy.jpg"
+            data-html="#video_{{index}}"
+        >
+            <div class="thumbnail-img video-poster"></div>
+        </a>
+
+        <a  ng-if="image.mimetype != 'video/mp4'"
+            href=""
+            data-src="{{image.large}}"
+            class="image"
+        >
+            <div class="thumbnail-img" style="background-image: url('{{image.thumbnail}}');"></div>
+
+        </a>
+
+        <a class="download" ng-href="{{getDownloadLink(image.large)}}" target="_self">
+            <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+            Herunterladen
+        </a>
+
+    </div>
+</div>
+
+
+<!-- <div class="row" id="links">
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 lightbox-image" ng-repeat="image in images">
         <a  ng-if="image.mimetype == 'video/mp4'"
             ng-href="{{image.large}}"
@@ -10,11 +92,6 @@
             class="image"
         >
             <div class="thumbnail-img video-poster"></div>
-        </a>
-
-        <a class="download" ng-href="{{getDownloadLink(image.large)}}" target="_self" ng-if="image.mimetype == 'video/mp4'">
-            <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-            Herunterladen
         </a>
 
         <a  ng-if="image.mimetype != 'video/mp4'"
@@ -29,43 +106,68 @@
             <div class="thumbnail-img" style="background-image: url('{{image.thumbnail}}');"></div>
         </a>
 
-        <a class="download" ng-href="{{getDownloadLink(image.large)}}" target="_self" ng-if="image.mimetype != 'video/mp4'">
+        <a class="download" ng-href="{{getDownloadLink(image.large)}}" target="_self">
             <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
             Herunterladen
         </a>
 
     </div>
-</div>
+</div> -->
 
 <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
-<div id="blueimp-gallery" class="blueimp-gallery">
+<!-- <div id="blueimp-gallery" class="blueimp-gallery">
     <div class="slides"></div>
-    <!-- <h3 class="title"></h3> -->
+    <h3 class="title"></h3>
     <a class="prev">‹</a>
     <a class="next">›</a>
     <a class="close">×</a>
     <a class="play-pause"></a>
     <ol class="indicator"></ol>
-</div>
+</div> -->
+
+<script type="text/javascript">
+$(document).ready(function(){
+    setTimeout(function() {
+
+        $('#links').lightGallery({
+            selector: ".image",
+        });
+    }, 1000);
+});
+</script>
 
 <script>
-    function openLightbox(event, element) {
+// $('#aniimated-thumbnials').lightGallery({
+//     thumbnail:true
+// });
+//
+//     $(document).ready(function() {
+//         $('#aniimated-thumbnials').lightGallery({
+//             thumbnail:true
+//         });
+//         // $("#lightgallery").lightGallery();
+//     });
 
-          event.preventDefault();
-          event = event || window.event;
-          var target = event.target || event.srcElement;
-          var index = parseInt($(element).attr("data-index"));
-          var options = {
-              index: index,
-              event: event,
-              toggleControlsOnReturn: false,
-              toggleControlsOnSlideClick: false,
-              hidePageScrollbars: true,
-              stretchImages: true,
-          };
-          var parent = $(element).parents().find("#links");
-          var links = $(parent).find(".image");
-
-          blueimp.Gallery(links, options);
-    }
+    // function openLightbox(event, element) {
+    //
+    //       event.preventDefault();
+    //       event = event || window.event;
+    //       var target = event.target || event.srcElement;
+    //       var index = parseInt($(element).attr("data-index"));
+    //       var options = {
+    //           index: index,
+    //           event: event,
+    //           toggleControlsOnReturn: false,
+    //           toggleControlsOnSlideClick: false,
+    //           hidePageScrollbars: true,
+    //           stretchImages: true,
+    //           fullScreen: true,
+    //           carousel: false,
+    //           continuous: true,
+    //       };
+    //       var parent = $(element).parents().find("#links");
+    //       var links = $(parent).find(".image");
+    //
+    //       blueimp.Gallery(links, options);
+    // }
 </script>
