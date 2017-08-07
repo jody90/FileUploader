@@ -22,8 +22,6 @@ myApp.config(function($routeProvider) {
     .otherwise({redirectTo: "/"});
 })
 
-
-
 myApp.run(['$rootScope', '$location', '$routeParams', function($rootScope, $location, $routeParams) {
 
     var showProgressBar = function(value) {
@@ -45,10 +43,10 @@ myApp.run(['$rootScope', '$location', '$routeParams', function($rootScope, $loca
             $rootScope.headerText = "Willkommen auf der Hochzeit von Barbara und Matthias";
             break;
             case "/gallery" :
-                $rootScope.headerText = "Gallerie";
+            $rootScope.headerText = "Gallerie";
             break;
             case "/upload" :
-                $rootScope.headerText = "Bilder und Videos Hochladen";
+            $rootScope.headerText = "Bilder und Videos Hochladen";
             break;
         }
 
@@ -61,8 +59,19 @@ myApp.run(['$rootScope', '$location', '$routeParams', function($rootScope, $loca
     // Wenn sich uploading value aendert showProgressBar aufrufen
     $rootScope.$watch("uploading", function(value) {
         showProgressBar(value);
-      });
+    });
 
     $rootScope.uploading = false;
+
+    $rootScope.isVideoFile = function(mimetype) {
+
+        if (mimetype == "video/x-matroska" || mimetype == "video/mp4") {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
 
 }]);

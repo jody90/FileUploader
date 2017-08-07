@@ -1,9 +1,9 @@
 <div class="row" id="links">
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 lightbox-image" ng-repeat="image in images">
-        <a  ng-if="image.mimetype == 'video/mp4'"
+        <a  ng-if="isVideoFile(image.mimetype)"
             ng-href="{{image.large}}"
             title="Hochzeit"
-            type="{{image.mimetype}}"
+            type="video/mp4"
             data-poster="images/video-boy.jpg"
             onclick="openLightbox(window.event, $(this))"
             data-index={{$index}}
@@ -17,7 +17,7 @@
             Herunterladen
         </a>
 
-        <a  ng-if="image.mimetype != 'video/mp4'"
+        <a  ng-if="!isVideoFile(image.mimetype)"
             ng-href="{{image.midsize}}"
             title="Hochzeit"
             type="{{image.mimetype}}"

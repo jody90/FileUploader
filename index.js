@@ -123,6 +123,17 @@ function createThumbs(file, callback) {
     });
 }
 
+function isVideoFile(mimetype) {
+
+    if (mimetype == "video/x-matroska" || mimetype == "video/mp4") {
+        return true;
+    }
+    else {
+        return false;
+    }
+
+}
+
 app.post('/uploaded', upload.single('userFile'), function(req, res) {
 
     var tFile = req.file;
@@ -148,7 +159,7 @@ app.post('/uploaded', upload.single('userFile'), function(req, res) {
     var thumbPath = uploadThumbsFolder + filename;
 
     // Videos auch in Thumbnails aufnehmen direekt
-    if (tFile.mimetype == "video/mp4") {
+    if (isVideoFile(tFile.mimetype)) {
         fs.createReadStream(newFilePath).pipe(fs.createWriteStream(thumbPath));
     }
 

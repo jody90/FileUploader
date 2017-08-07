@@ -78,7 +78,7 @@ myApp.controller('UploadController', ['$scope', '$rootScope', '$http', '$locatio
         thumbData.filename = filename;
         thumbData.filesize = filesizeMb;
 
-        if (file.type == "video/mp4") {
+        if ($rootScope.isVideoFile(file.type)) {
             thumbData.picFile = "images/video-poster.jpg";
             $scope.$apply(function(scope) {
                 $scope.filesArray.thumbs.push(thumbData);
